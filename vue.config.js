@@ -6,6 +6,7 @@ module.exports = {
       alias: {
         vue$: "vue/dist/vue.esm.js",
         "@": path.join(__dirname, "src/"),
+        "~": path.join(__dirname, "src/assets/"),
       },
     },
   },
