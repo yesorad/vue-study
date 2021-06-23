@@ -1,5 +1,7 @@
 <template>
-  <div>fristPage</div>
+  <div>
+    <p>fristPage</p>
+  </div>
 </template>
 
 <script>
@@ -8,4 +10,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+div {
+  font-size: 14px;
+  p {
+    color: $blue;
+  }
+}
+</style>

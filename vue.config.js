@@ -9,4 +9,13 @@ module.exports = {
       },
     },
   },
+  css: {
+    extract: true,
+    loaderOptions: {
+      sass: {
+        additionalData: "@import '@/assets/style/config/index';",
+        sourceMap: true,
+      },
+    },
+  },
 };
