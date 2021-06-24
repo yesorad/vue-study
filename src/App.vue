@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <p>{{ this.$route.name }}</p>
+  <Layout>
     <router-view />
-  </div>
+  </Layout>
 </template>
 
 <script>
+import Layout from "@/components/layout/Layout";
+
 export default {
   name: "App",
+  components: { Layout },
 };
 </script>
 
