@@ -3,13 +3,13 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-const First = () => import("@/views/First");
+const Register = () => import("@/views/register");
 const NotFound = { template: "<div>Not Found</div>" };
 
 const router = new VueRouter({
   mode: "history",
   routes: [
-    { path: "/first", component: First, name: "First" },
+    { path: "/register", component: Register, name: "Register" },
     { path: "*", component: NotFound, name: "NotFound" },
   ],
 });
