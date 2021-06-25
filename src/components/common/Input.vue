@@ -1,5 +1,5 @@
 <template>
-  <input type="text" :value="value" :name="name" @input="onChange" />
+  <input :type="type" :value="value" :name="name" @input="onChange" />
 </template>
 
 <script>
@@ -8,6 +8,10 @@ export default {
   props: {
     value: String,
     name: String,
+    type: {
+      type: String,
+      default: "String",
+    },
   },
   methods: {
     onChange(e) {

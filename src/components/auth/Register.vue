@@ -1,56 +1,70 @@
 <template>
   <form @submit.prevent="onSubmit">
     <Input
-      :value="valueData[0].value"
-      :name="valueData[0].name"
+      :value="auth.email"
+      name="email"
+      type="text"
       @input="onChange"
+      placeholder="아이디"
     />
     <Input
-      :value="valueData[1].value"
-      :name="valueData[1].name"
+      :value="auth.name"
+      name="name"
+      type="text"
       @input="onChange"
+      placeholder="이름"
     />
     <Input
-      :value="valueData[2].value"
-      :name="valueData[2].name"
+      :value="auth.passworld"
+      name="password"
+      type="password"
       @input="onChange"
+      placeholder="비밀번호"
+    />
+    <Input
+      :value="auth.password_confirmation"
+      name="password_confirmation"
+      type="password"
+      @input="onChange"
+      placeholder="비밀번호 확인"
     />
     <button type="submit">전송</button>
+    <div v-if="state.loading">로딩중!</div>
+    <div v-if="state.error">에러!</div>
   </form>
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from "vuex";
 import Input from "@/components/common/Input";
 export default {
   name: "Register",
-  data() {
-    return {
-      valueData: [
-        { name: "email", value: "" },
-        { name: "name", value: "" },
-        { name: "password", value: "" },
-      ],
-      formData: {
-        email: "",
-        name: "",
-        password: "",
-      },
-    };
+  computed: {
+    ...mapState({
+      auth: (state) => state.auth.register,
+      state: (state) => state.auth,
+    }),
   },
   methods: {
+    ...mapMutations({
+      changeField: "changeField",
+    }),
+    ...mapActions({
+      registerAction: "registerAction",
+    }),
     onChange(event) {
       const { name, value } = event;
-
-      this.valueData.map((item) => {
-        if (item.name === name) return (item.value = value);
+      this.changeField({
+        form: "register",
+        name,
+        value,
       });
     },
     onSubmit() {
-      const [email, name, password] = this.valueData;
-
-      this.formData.email = email.value;
-      this.formData.name = name.value;
-      this.formData.password = password.value;
+      const { email, name, password, password_confirmation } = this.auth;
+      if (password !== password_confirmation)
+        return alert("비밀번호를 확인해주십시오");
+      this.registerAction({ email, name, password });
     },
   },
   components: { Input },
