@@ -62,8 +62,9 @@ export default {
     },
     onSubmit() {
       const { email, name, password, password_confirmation } = this.auth;
-      if (password !== password_confirmation)
+      if (password !== password_confirmation){
         return alert("비밀번호를 확인해주십시오");
+      }
       this.registerAction({ email, name, password });
     },
   },
