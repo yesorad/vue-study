@@ -46,12 +46,8 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations({
-      changeField: "changeField",
-    }),
-    ...mapActions({
-      registerAction: "registerAction",
-    }),
+    ...mapMutations(["changeField"]),
+    ...mapActions(["registerAction"]),
     onChange(event) {
       const { name, value } = event;
       this.changeField({
