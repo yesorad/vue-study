@@ -12,6 +12,7 @@
       name="name"
       type="text"
       @input="onChange"
+      autocomplete="username"
       placeholder="이름"
     />
     <Input
@@ -19,6 +20,7 @@
       name="password"
       type="password"
       @input="onChange"
+      autocomplete="new-password"
       placeholder="비밀번호"
     />
     <Input
@@ -26,6 +28,7 @@
       name="password_confirmation"
       type="password"
       @input="onChange"
+      autocomplete="new-password"
       placeholder="비밀번호 확인"
     />
     <button type="submit">전송</button>
@@ -58,6 +61,9 @@ export default {
     },
     onSubmit() {
       const { email, name, password, password_confirmation } = this.auth;
+      if ([email, name, password, password_confirmation].includes("")) {
+        return alert("모든 항목을 입력하세요");
+      }
       if (password !== password_confirmation) {
         return alert("비밀번호를 확인해주십시오");
       }
