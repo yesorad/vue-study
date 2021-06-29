@@ -33,7 +33,6 @@ const actions = {
     try {
       await authAPI.register({ email, name, password });
       state.success = true;
-      alert("회원가입 성공");
     } catch (e) {
       state.error = true;
       console.log(e);
