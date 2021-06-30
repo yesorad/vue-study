@@ -7,3 +7,9 @@ export const register = ({ email, name, password }) =>
     name,
     password,
   });
+
+export const login = ({ email, password }) =>
+  instance.post("/auth/login", {
+    email,
+    password,
+  });

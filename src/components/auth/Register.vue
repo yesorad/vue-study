@@ -32,6 +32,7 @@
       placeholder="비밀번호 확인"
     />
     <button type="submit">전송</button>
+
     <div v-if="isLoading">로딩중!</div>
     <div v-if="isError">에러!</div>
     <div v-if="isSuccess">회원가입 성공!</div>
@@ -47,14 +48,14 @@ export default {
   computed: {
     ...mapState({
       auth: (state) => state.auth.register,
-      isSuccess: (state) => state.auth.isSuccess,
+      isSuccess: (state) => state.auth.success,
       isLoading: (state) => state.auth.loading,
       isError: (state) => state.auth.error,
     }),
   },
   methods: {
     ...mapMutations(["changeField"]),
-    ...mapActions(["registerAction"]),
+    ...mapActions(["register"]),
     onChange(event) {
       const { name, value } = event;
       this.changeField({
@@ -71,7 +72,7 @@ export default {
       if (password !== password_confirmation) {
         return alert("비밀번호를 확인해주십시오");
       }
-      this.registerAction({ email, name, password });
+      this.register({ email, name, password });
     },
   },
   components: { Input },
