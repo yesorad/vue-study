@@ -13,3 +13,5 @@ export const login = ({ email, password }) =>
     email,
     password,
   });
+
+export const check = () => instance.post("/auth/me");

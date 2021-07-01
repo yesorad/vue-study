@@ -13,6 +13,7 @@ const state = () => ({
     email: "",
     password: "",
   },
+  user: null,
   accessToken: null,
   loading: false,
   error: false,
@@ -26,9 +27,12 @@ const mutations = {
     ...state,
     auth: (state[payload.form][payload.name] = payload.value),
   }),
-  setAuth(state, accessToken) {
+  setToken(state, accessToken) {
     state.accessToken = accessToken;
     localStorage.setItem("accessToken", accessToken);
+  },
+  checkUser(state, user) {
+    state.user = user;
   },
 };
 
@@ -54,7 +58,7 @@ const actions = {
         instance.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`;
-        commit("setAuth", accessToken);
+        commit("setToken", accessToken);
       }
 
       state.success = true;
