@@ -5,13 +5,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Loading",
-  props: {
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
+  computed: {
+    ...mapState({
+      isLoading: (state) => state.auth.loading,
+    }),
   },
 };
 </script>

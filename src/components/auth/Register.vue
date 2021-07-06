@@ -36,7 +36,7 @@
       <div v-if="isError">에러!</div>
       <div v-if="isSuccess">회원가입 성공!</div>
     </form>
-    <Loading :isLoading="isLoading" />
+    <Loading />
   </div>
 </template>
 
@@ -51,7 +51,6 @@ export default {
     ...mapState({
       auth: (state) => state.auth.register,
       isSuccess: (state) => state.auth.success,
-      isLoading: (state) => state.auth.loading,
       isError: (state) => state.auth.error,
     }),
   },
