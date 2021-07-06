@@ -37,6 +37,7 @@
       <div v-if="isSuccess">회원가입 성공!</div>
     </form>
     <Loading />
+    <Modal />
   </div>
 </template>
 
@@ -44,6 +45,7 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import Input from "@/components/common/Input";
 import Loading from "@/components/common/Loading.vue";
+import Modal from "../common/Modal.vue";
 
 export default {
   name: "Register",
@@ -55,7 +57,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(["changeField"]),
+    ...mapMutations(["changeField", "isConfirmText", "isToggle"]),
     ...mapActions(["register"]),
     onChange(event) {
       const { name, value } = event;
@@ -68,15 +70,17 @@ export default {
     onSubmit() {
       const { email, name, password, password_confirmation } = this.auth;
       if ([email, name, password, password_confirmation].includes("")) {
-        return alert("모든 항목을 입력하세요");
+        this.isConfirmText("모든 항목을 입력하세요");
+        return this.isToggle();
       }
       if (password !== password_confirmation) {
-        return alert("비밀번호를 확인해주십시오");
+        this.isConfirmText("비밀번호를 확인해주십시오");
+        return this.isToggle();
       }
       this.register({ email, name, password });
     },
   },
-  components: { Input, Loading },
+  components: { Input, Loading, Modal },
 };
 </script>
 
