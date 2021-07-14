@@ -77,7 +77,12 @@ export default {
         this.isConfirmText("비밀번호를 확인해주십시오");
         return this.isToggle();
       }
+      // if (this.isError.response.status === 400) {
+      //   this.isConfirmText("비밀번호는 8글자 이상 입력해주세요.");
+      //   return this.isToggle();
+      // }
       this.register({ email, name, password });
+      // console.log(this.isError.response);
     },
   },
   components: { Input, Loading, Modal },

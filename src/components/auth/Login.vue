@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     ...mapMutations(["changeField"]),
-    ...mapActions(["login"]),
+    ...mapActions(["login", "checkUser"]),
     onChange(event) {
       const { name, value } = event;
       this.changeField({
@@ -52,7 +52,8 @@ export default {
       if ([email, password].includes("")) {
         return alert("모든 항목을 입력하세요");
       }
-      this.login({ email, password });
+      this.login({ email, password })
+      // console.log(this.login({ email, password }))
     },
   },
   components: { Input },

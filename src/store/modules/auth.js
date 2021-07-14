@@ -2,7 +2,6 @@ import instance from "@/api/instance";
 import * as authAPI from "@/api/auth";
 
 const state = () => ({
-  isAuthenticated: false,
   register: {
     email: "",
     name: "",
@@ -18,6 +17,7 @@ const state = () => ({
   loading: false,
   error: false,
   success: false,
+  message: null,
 });
 
 const getters = {};
@@ -31,7 +31,7 @@ const mutations = {
     state.accessToken = accessToken;
     localStorage.setItem("accessToken", accessToken);
   },
-  checkUser(state, user) {
+  setUser(state, user) {
     state.user = user;
   },
 };
@@ -43,8 +43,7 @@ const actions = {
       await authAPI.register({ email, name, password });
       state.success = true;
     } catch (e) {
-      state.error = true;
-      console.log(e);
+      state.error = e;
     }
     state.loading = false;
   },
@@ -60,13 +59,20 @@ const actions = {
         ] = `Bearer ${accessToken}`;
         commit("setToken", accessToken);
       }
-
-      state.success = true;
     } catch (e) {
       state.error = true;
-      console.log(e);
     }
     state.loading = false;
+  },
+
+  async checkUser({ commit }) {
+    try {
+      const res = await authAPI.check();
+      commit("setUser", res.data);
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 

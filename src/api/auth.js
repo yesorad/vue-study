@@ -14,4 +14,4 @@ export const login = ({ email, password }) =>
     password,
   });
 
-export const check = () => instance.post("/auth/me");
+export const check = () => instance.get("/auth/me");
