@@ -17,7 +17,6 @@ const state = () => ({
   loading: false,
   error: false,
   success: false,
-  message: null,
 });
 
 const getters = {};
@@ -60,7 +59,7 @@ const actions = {
         commit("setToken", accessToken);
       }
     } catch (e) {
-      state.error = true;
+      state.error = e
     }
     state.loading = false;
   },

@@ -82,7 +82,6 @@ export default {
       //   return this.isToggle();
       // }
       this.register({ email, name, password });
-      // console.log(this.isError.response);
     },
   },
   components: { Input, Loading, Modal },

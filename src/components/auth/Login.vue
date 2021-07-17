@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onsubmit">
+  <form @submit.prevent="onSubmit">
     <Input
       :type="'email'"
       :name="'email'"
@@ -47,11 +47,12 @@ export default {
         value,
       });
     },
-    onsubmit() {
+    onSubmit() {
       const { email, password } = this.auth;
       if ([email, password].includes("")) {
         return alert("모든 항목을 입력하세요");
       }
+      console.log(this.isError)
       this.login({ email, password })
       // console.log(this.login({ email, password }))
     },
